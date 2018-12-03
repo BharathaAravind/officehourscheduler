@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V4</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">
+	<link rel="stylesheet" type="text/css" href="css/hometa.css">
+<!--===============================================================================================-->
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#">Office Hour Scheduler</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <!-- <li class="nav-item active">
+            <a class="nav-link" href="#" style="visibility: hidden">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" style="visibility: hidden">Link</a>
+        </li> -->
+        <li class="nav-item">
+            <a class="nav-link active center" href="#" style="font-size: 1.5em !important;">Home<span class="sr-only">(current)</span></a>
+        </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="php/logout.php">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="visibility:hidden;">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </div>
+    </nav>
+
+	<div class="container">
+		<!-- <div class="row"> -->
+			<select id="selectedcourse" class="select_month">
+					<option value="infor arch for web">Info Arch for Web</option>
+			</select>
+			<button type="submit" class="btn float-right" id="confirmslots">Check My Confirmed Slots</button>	
+		<!-- </div> -->
+		<!-- <div class="row"> -->
+		    <table class="confirmations-table"> 
+                <tr>
+                    <th>S.no</th>
+                    <th>Query Title</th>
+                    <th>Query Description</th>
+                    <th>Asked By</th>
+                    <th>Date and Timeslot</th>
+                    <th>Reply</th>
+                    <th>Confirm</th>
+                </tr>
+            </table>
+       <!-- </div> -->
+	    </div>
+	</div>
+	
+     <div id="createEventModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Pick a slot</h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span> <span class="sr-only">close</span></button>
+                </div>
+                <div id="modalBody" class="modal-body">
+                   <div class="form-group">
+                        <!-- <input class="form-control" type="text" placeholder="Event Name" id="eventName"> -->
+                        <input class="form-control" type="text" placeholder="Query Title" id="queryTitle" readonly>
+                    </div>
+    
+                    <div class="form-group">
+                        <!-- <textarea class="form-control" type="text" rows="4" placeholder="Event Description" id= "eventDescription"></textarea> -->
+                        <textarea class="form-control" type="text" rows="4" placeholder="Query Description" id= "queryDescription" readonly></textarea>
+                    </div>
+
+					<div class="form-group">
+                        <!-- <textarea class="form-control" type="text" rows="4" placeholder="Event Description" id= "eventDescription"></textarea> -->
+                        <textarea class="form-control" type="text" rows="4" placeholder="Type your Reply" id= "answerQueryDescription"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submitButton">Save</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+    <script src="js/hometa.js"></script>
+</body>
+</html>
