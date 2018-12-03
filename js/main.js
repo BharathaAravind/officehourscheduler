@@ -10,7 +10,7 @@
             if($(this).val().trim() != "") {
                 $(this).addClass('has-val');
             }
-            else {
+            else {  
                 $(this).removeClass('has-val');
             }
         })    

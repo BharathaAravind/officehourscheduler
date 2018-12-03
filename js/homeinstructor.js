@@ -2,7 +2,7 @@ $(function() {
     $(document).ready(function() { 
         $.getJSON("php/checksession.php", function(data){
             if(!data){
-                window.location = "/officehourscheduler/index.html";
+                window.location = "/officehourscheduler/duo.php";
             }
         });
 
