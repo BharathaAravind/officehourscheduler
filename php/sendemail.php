@@ -1,49 +1,35 @@
-<?php 
-    require_once "vendor/autoload.php";
-    include("session.php");
-    if(!isset($_SESSION["useremail"])){
-        header('Location: ../duo.php');
+<?php
+
+  require("../PHPMailer/src/PHPMailer.php");
+  require("../PHPMailer/src/SMTP.php");
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer();
+    $mail->IsSMTP(); // enable SMTP
+
+    // $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+    $mail->SMTPAuth = true; // authentication enabled
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail
+    $mail->Username = "officehourscheduler@gmail.com";
+    $mail->Password = "infoarch@123";
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
+
+    $mail->IsHTML(true);
+    $mail->SetFrom("no-reply@officehourscheduler.com");
+    $mail->Subject = "You have a new reply to your question!";
+    $mail->Body = $_POST["queryDescription"];
+    $email = 'nxjanxaslnxlsa';
+    if(isset($_POST["requestedBy"])){
+        $email = $_POST["requestedBy"];
     }
     
-    $useremail=$_SESSION["useremail"];
-   
-    // Email functionality used to send confirmation emails and querie answers
-    // GET request
+    $mail->AddAddress($email);
 
-    //Enable SMTP debugging. 
-    $mail->SMTPDebug = 3;                               
-    //Set PHPMailer to use SMTP.
-    $mail->isSMTP();            
-    //Set SMTP host name                          
-    $mail->Host = "smtp.gmail.com";
-    //Set this to true if SMTP host requires authentication to send email
-    $mail->SMTPAuth = true;                          
-    //Provide username and password     
-    $mail->Username = "name@gmail.com";                 
-    $mail->Password = "super_secret_password";                           
-    //If SMTP requires TLS encryption then set it
-    $mail->SMTPSecure = "tls";                           
-    //Set TCP port to connect to 
-    $mail->Port = 587;                                   
-
-    $mail->From = "name@gmail.com";
-    $mail->FromName = "Full Name";
-
-    $mail->addAddress("name@example.com", "Recepient Name");
-
-    $mail->isHTML(true);
-
-    $mail->Subject = "Subject Text";
-    $mail->Body = "<i>Mail body in HTML</i>";
-    $mail->AltBody = "This is the plain text version of the email content";
-
-    if(!$mail->send()) 
-    {
+     if(!$mail->Send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
-    } 
-    else 
-    {
-        echo "Message has been sent successfully";
-    }
-
+     } else {
+        echo "success";
+     }
 ?>

@@ -35,7 +35,7 @@ $(function() {
                     str+="<td>" + data[i]['querydescription'] + "</td>";
                     str+="<td>" + data[i]['requestedby'] + "</td>";
                     str+="<td>" + data[i]['bookingdate'] + " and "+ data[i]['timeslot'] +"</td>";
-                    str+='<td><a href="#" onclick="replyconfirmation(\''+data[i]['course']+"','"+ data[i]['querytitle'] +"','"+ data[i]['querydescription']+"','"+ data[i]['bookingdate']+"','"+ data[i]['timeslot']+"')\"> Reply</a></td>";
+                    str+='<td><a href="#" onclick="replyconfirmation(\''+data[i]['requestedby']+"','"+ data[i]['querytitle'] +"','"+ data[i]['querydescription']+"','"+ data[i]['bookingdate']+"','"+ data[i]['timeslot']+"')\"> Reply</a></td>";
                     str+='<td><a href="#" onclick="confirmconfirmation(\''+data[i]['course']+"','"+ data[i]['requestedby']+"','"+ data[i]['bookingdate']+"','"+ data[i]['timeslot']+"')\"> Confirm</a></td>";
                     str+="</tr>";
                 }
@@ -47,23 +47,45 @@ $(function() {
     
 });
 var globalQueryData = "";
-function replyconfirmation(course, queryTitle, queryDescription, bookingdate, timeslot){
+var globalQueryData2 = "";
+function replyconfirmation(requestedBy, queryTitle, queryDescription, bookingdate, timeslot){
     $("#createEventModal").modal('show');
     $('#queryTitle').val(queryTitle);
     $('#queryDescription').val(queryDescription);
 
-    // EMail
-    $('#answerQueryDescription').val();
-    
+    var body = $('#answerQueryDescription').val();
     var querydata = {
-        "course": course,
-        "bookingdate": bookingdate,
-        "timeslot": timeslot,
-        "querytitle": queryTitle,
-        "queryDescription": queryDescription,
+        "requestedBy": requestedBy,
+        "queryDescription": body,
     };
-    globalQueryData = querydata;
+    console.log(querydata);
+    globalQueryData2 = querydata;
+    console.log(globalQueryData2);
 }
+
+$('#sendemailBtn').on('click', function(e){
+        // EMail
+    e.preventDefault();
+    $("#createEventModal").modal('hide');
+    alert("h");
+    var body = $('#answerQueryDescription').val();
+    
+    globalQueryData2["queryDescription"] = body;
+    console.log(globalQueryData2);
+    if(body.trim().length>0){
+        $.post("php/sendemail.php", globalQueryData2,function(data) {
+               console.log(data);
+                if(data.trim()=="success"){
+                    alert("Email sent successfully!");
+                }else{
+                    alert("Error occured. Try again later!");
+                }
+            });
+    }else{
+        alert("Reply cant be empty");
+    }
+});
+
 
 $('#confirmslots').on('click', function(e){
     window.location = "/officehourscheduler/myconfirmationsta.html";
